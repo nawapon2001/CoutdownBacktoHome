@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>นับถอยหลังสู่วันที่ 4 กรกฎาคม</title>
+  <style>
+    body {
+      background: linear-gradient(to right, #2c3e50, #3498db);
+      font-family: 'Kanit', sans-serif;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h1 {
+      font-size: 2.5em;
+      margin-bottom: 40px;
+      text-shadow: 2px 2px 4px #000;
+    }
+
+    .countdown {
+      display: flex;
+      gap: 20px;
+    }
+
+    .time-box {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 20px 30px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .time-box h2 {
+      font-size: 2.5em;
+      margin: 0;
+    }
+
+    .time-box p {
+      margin: 5px 0 0;
+      font-size: 1.2em;
+      color: #ddd;
+    }
+  </style>
+</head>
+<body>
+  <h1>นับถอยหลังสู่วันที่ 4 กรกฎาคม เวลา 12.00 น.</h1>
+  <div class="countdown">
+    <div class="time-box">
+      <h2 id="days">0</h2>
+      <p>วัน</p>
+    </div>
+    <div class="time-box">
+      <h2 id="hours">0</h2>
+      <p>ชั่วโมง</p>
+    </div>
+    <div class="time-box">
+      <h2 id="minutes">0</h2>
+      <p>นาที</p>
+    </div>
+    <div class="time-box">
+      <h2 id="seconds">0</h2>
+      <p>วินาที</p>
+    </div>
+  </div>
+
+  <script>
+    function updateCountdown() {
+      const now = new Date();
+      const target = new Date('2025-07-04T12:00:00+07:00'); // เวลาไทย
+
+      const diff = target - now;
+
+      if (diff <= 0) {
+        document.querySelector(".countdown").innerHTML = "<h2>ถึงเวลาแล้ว!</h2>";
+        return;
+      }
+
+      const seconds = Math.floor((diff / 1000) % 60);
+      const minutes = Math.floor((diff / 1000 / 60) % 60);
+      const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+      document.getElementById("days").textContent = days;
+      document.getElementById("hours").textContent = hours;
+      document.getElementById("minutes").textContent = minutes;
+      document.getElementById("seconds").textContent = seconds;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
